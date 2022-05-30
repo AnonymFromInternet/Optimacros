@@ -1,0 +1,12 @@
+.list {
+    margin: 8px;
+    min-height: 80vh;
+    border: 1px solid #FF8C8C;
+    border-radius: 6px;
+}
+.description {
+    margin: 8px;
+    min-height: 80vh;
+    border: 1px solid #FF8C8C;
+    border-radius: 6px;
+}
