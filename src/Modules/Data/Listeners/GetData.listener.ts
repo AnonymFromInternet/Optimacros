@@ -13,9 +13,10 @@ getDataListener.startListening({
   effect: async (action, listenerApi) => {
     DataService.getData()
       .then((response) => {
-        listenerApi.dispatch(
-          getDataSuccessAction(response.data.entityLabelPages[0])
+        let items = DataService.createItemsArray(
+          response.data.entityLabelPages[0]
         );
+        listenerApi.dispatch(getDataSuccessAction(items));
       })
       .catch(() => {
         listenerApi.dispatch(getDataFailureAction("Error by getting data"));

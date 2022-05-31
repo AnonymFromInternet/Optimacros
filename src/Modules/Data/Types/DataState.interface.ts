@@ -1,7 +1,7 @@
-import { DataInterface } from "./Data.interface";
+import { ItemInterface } from "./Item.interface";
 
 export interface DataStateInterface {
   isLoading: boolean;
-  data: DataInterface | null;
+  data: ItemInterface[] | null;
   error: string | null;
 }

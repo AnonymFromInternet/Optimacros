@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { DataStateInterface } from "../Types/DataState.interface";
 import { RootState } from "../../../Shared/GlobalStore/GlobalStore";
-import { DataInterface } from "../Types/Data.interface";
+import { ItemInterface } from "../Types/Item.interface";
 
 const initialState: DataStateInterface = {
   isLoading: false,
@@ -17,7 +17,7 @@ const dataSlice = createSlice({
     getDataAction: (state) => {
       state.isLoading = true;
     },
-    getDataSuccessAction: (state, action: PayloadAction<DataInterface>) => {
+    getDataSuccessAction: (state, action: PayloadAction<ItemInterface[]>) => {
       state.isLoading = false;
       state.data = action.payload;
     },
