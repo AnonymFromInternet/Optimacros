@@ -1,14 +1,17 @@
 .list {
     margin: 8px;
     min-height: 80vh;
-    border: 1px solid #FF8C8C;
+    border: 1px solid #0d6efd;
     border-radius: 6px;
     padding: 14px;
 }
 .description {
     margin: 8px;
     min-height: 80vh;
-    border: 1px solid #FF8C8C;
+    border: 1px solid #0d6efd;
     border-radius: 6px;
     padding: 14px;
+}
+*{
+    font-family: 'Roboto', sans-serif;
 }

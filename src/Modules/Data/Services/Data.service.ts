@@ -25,13 +25,17 @@ export class DataService {
         parents[`${children[i].parentId}`] = children[i].parentId;
       }
     }
-    parentsArray = Object.values(parents);
+    let array = Object.values(parents);
+    console.log("array is", array);
+    for (let i = 0; i < array.length; i++) {
+      let parent: ParentInterface = { id: 0 };
+      parent.id = Number(array[i]);
+      parentsArray.push(parent);
+    }
     return parentsArray;
   }
 
-  static async getData(): Promise<
-    AxiosResponse<GetDataResponseInterface, any>
-  > {
+  static async getData(): Promise<AxiosResponse<GetDataResponseInterface>> {
     return axios.request<GetDataResponseInterface>({
       url: "https://gist.githubusercontent.com/avydashenko/e1702c1ef26cddd006da989aa47d4f62/raw/067f7b75946baf7faf5b8afcd04c66ecf0b47486/view.json",
       method: "GET",
