@@ -1,16 +1,9 @@
 import { FC } from "react";
 
 import "./Group.component.css";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../../Shared/GlobalStore/Hooks";
-import {
-  areChildrenShowedSelector,
-  childrenSelector,
-  childrenShowedToggler,
-} from "../../Store/Data.slice";
-import ChildComponent from "./Child.component";
+import { useAppDispatch } from "../../../../Shared/GlobalStore/Hooks";
+import { childrenShowedToggler } from "../../Store/Data.slice";
+import ChildrenComponent from "./ChildrenComponent";
 
 interface ParentComponentProps {
   id: number;
@@ -37,7 +30,7 @@ const ParentComponent: FC<ParentComponentProps> = ({ id }) => {
           </div>
         </div>
       </div>
-      <ChildComponent parentId={id} />
+      <ChildrenComponent parentId={id} />
     </>
   );
 };

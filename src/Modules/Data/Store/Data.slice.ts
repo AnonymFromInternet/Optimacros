@@ -10,7 +10,6 @@ import { ParentIDType } from "../../Description/Types/ParentID.type";
 const initialState: DataStateInterface = {
   isLoading: false,
   children: null,
-  areChildrenShowed: false,
   parents: null,
   parentIdForShowing: null,
   error: null,
@@ -42,7 +41,6 @@ const dataSlice = createSlice({
       // filter по children. Если айди не совпадает тогда вернуть в
     },
     childrenShowedToggler: (state, action: PayloadAction<ParentIDType>) => {
-      state.areChildrenShowed = !state.areChildrenShowed;
       state.parentIdForShowing = action.payload;
     },
   },
@@ -62,8 +60,7 @@ export const isLoadingSelector = (state: RootState) => state.data.isLoading;
 export const childrenSelector = (state: RootState) => state.data.children;
 export const parentsSelector = (state: RootState) => state.data.parents;
 export const errorSelector = (state: RootState) => state.data.error;
-export const areChildrenShowedSelector = (state: RootState) =>
-  state.data.areChildrenShowed;
+
 export const parentIdForShowingSelector = (state: RootState) =>
   state.data.parentIdForShowing;
 
