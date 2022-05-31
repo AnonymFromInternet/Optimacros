@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
+
 import { GetDataResponseInterface } from "../../../Shared/Types/GetDataResponseInterface";
-import { ChildInterface } from "../Types/ChildInterface";
+import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 import { DataInterface } from "../Types/Data.interface";
 import { ParentInterface } from "../Types/Parent.interface";
 

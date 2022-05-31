@@ -1,6 +1,5 @@
-import { ItemIDType } from "./ItemID.type";
+import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 
 export interface DescriptionStateInterface {
-  isDescriptionShowing: boolean;
-  itemId: ItemIDType | null;
+  child: ChildInterface | null;
 }

@@ -1,8 +1,13 @@
 import { FC } from "react";
-import { useAppSelector } from "../../../../Shared/GlobalStore/Hooks";
+
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../Shared/GlobalStore/Hooks";
 import {
   childrenSelector,
   parentIdForShowingSelector,
+  showDescriptionAction,
 } from "../../Store/Data.slice";
 
 interface ChildrenComponentProps {
@@ -13,12 +18,14 @@ const ChildrenComponent: FC<ChildrenComponentProps> = ({ parentId }) => {
   // Store
   const children$ = useAppSelector(childrenSelector);
   const parentIdForShowing$ = useAppSelector(parentIdForShowingSelector);
+  const dispatch$ = useAppDispatch();
   // Store
 
   const content = () => {
     return children$?.map((child) => {
       return child.parentId === parentId && parentIdForShowing$ === parentId ? (
         <p
+          onClick={() => dispatch$(showDescriptionAction(child))}
           className={"childrenFCParagraph btn btn-outline-primary"}
           key={child.id}
         >

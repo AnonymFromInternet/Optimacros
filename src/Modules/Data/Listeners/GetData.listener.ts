@@ -1,11 +1,12 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
+
 import {
   getDataAction,
   getDataFailureAction,
   getDataSuccessAction,
 } from "../Store/Data.slice";
 import { DataService } from "../Services/Data.service";
-import { ChildInterface } from "../Types/ChildInterface";
+import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 import { ParentsAndChildrenInterface } from "../Types/ParentsAndChildren.interface";
 
 export const getDataListener = createListenerMiddleware();

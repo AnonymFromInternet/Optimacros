@@ -2,33 +2,26 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { DescriptionStateInterface } from "../Types/DescriptionState.interface";
 import { RootState } from "../../../Shared/GlobalStore/GlobalStore";
-import { ItemIDType } from "../Types/ItemID.type";
+import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 
 const initialState: DescriptionStateInterface = {
-  isDescriptionShowing: false,
-  itemId: null,
+  child: null,
 };
 
 const descriptionSlice = createSlice({
   name: "description",
   initialState,
   reducers: {
-    showDescriptionAction: (state) => {
-      state.isDescriptionShowing = true;
-    },
-    setItemIdAction: (state, action: PayloadAction<ItemIDType>) => {
-      state.itemId = action.payload;
+    setChildAction: (state, action: PayloadAction<ChildInterface>) => {
+      state.child = action.payload;
     },
   },
 });
 
 // Actions
-export const { showDescriptionAction, setItemIdAction } =
-  descriptionSlice.actions;
+export const { setChildAction } = descriptionSlice.actions;
 
 // Selectors
-export const isDescriptionShowingSelector = (state: RootState) =>
-  state.description.isDescriptionShowing;
-export const itemIdSelector = (state: RootState) => state.description.itemId;
+export const childSelector = (state: RootState) => state.description.child;
 
 export default descriptionSlice.reducer;

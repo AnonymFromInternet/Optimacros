@@ -6,6 +6,7 @@ import { ParentsAndChildrenInterface } from "../Types/ParentsAndChildren.interfa
 import { ErrorType } from "../../../Shared/Types/Error.type";
 import { ItemIDType } from "../../Description/Types/ItemID.type";
 import { ParentIDType } from "../../Description/Types/ParentID.type";
+import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 
 const initialState: DataStateInterface = {
   isLoading: false,
@@ -43,6 +44,7 @@ const dataSlice = createSlice({
     childrenShowedToggler: (state, action: PayloadAction<ParentIDType>) => {
       state.parentIdForShowing = action.payload;
     },
+    showDescriptionAction: (state, action: PayloadAction<ChildInterface>) => {},
   },
 });
 
@@ -53,6 +55,7 @@ export const {
   getDataFailureAction,
   deleteParentAction,
   childrenShowedToggler,
+  showDescriptionAction,
 } = dataSlice.actions;
 
 // Selectors

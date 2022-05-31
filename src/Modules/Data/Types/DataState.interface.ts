@@ -1,4 +1,4 @@
-import { ChildInterface } from "./ChildInterface";
+import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 import { ParentInterface } from "./Parent.interface";
 import { ErrorType } from "../../../Shared/Types/Error.type";
 
