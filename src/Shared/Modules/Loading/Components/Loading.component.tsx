@@ -1,4 +1,4 @@
 const LoadingComponent = () => {
-  return <p className={"text-center text-danger"}>Loading...</p>;
+  return <h3 className={"text-center text-danger"}>Loading...</h3>;
 };
 export default LoadingComponent;

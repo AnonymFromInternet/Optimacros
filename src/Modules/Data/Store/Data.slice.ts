@@ -4,6 +4,7 @@ import { DataStateInterface } from "../Types/DataState.interface";
 import { RootState } from "../../../Shared/GlobalStore/GlobalStore";
 import { ParentsAndChildrenInterface } from "../Types/ParentsAndChildren.interface";
 import { ErrorType } from "../../../Shared/Types/Error.type";
+import { ItemIDType } from "../../Description/Types/ItemID.type";
 
 const initialState: DataStateInterface = {
   isLoading: false,
@@ -31,12 +32,19 @@ const dataSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    deleteParentAction: (state, action: PayloadAction<ItemIDType>) => {
+      // filter по parents. Если айди не совпадает тогда вернуть в
+    },
   },
 });
 
 // Actions
-export const { getDataAction, getDataSuccessAction, getDataFailureAction } =
-  dataSlice.actions;
+export const {
+  getDataAction,
+  getDataSuccessAction,
+  getDataFailureAction,
+  deleteParentAction,
+} = dataSlice.actions;
 
 // Selectors
 export const isLoadingSelector = (state: RootState) => state.data.isLoading;

@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 
 // Reducers
 import data from "../../Modules/Data/Store/Data.slice";
-import { getDataListener } from "../../Modules/Data/Listeners/GetData.listener";
+import description from "../../Modules/Description/Store/Description.slice";
 // Reducers
 
+import { getDataListener } from "../../Modules/Data/Listeners/GetData.listener";
+
 export const store = configureStore({
-  reducer: { data: data },
+  reducer: { data, description },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend([getDataListener.middleware]),
 });

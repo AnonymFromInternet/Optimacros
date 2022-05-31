@@ -1,0 +1,14 @@
+.descriptionComponentContainer {
+    min-height: 500px;
+    background-color: rgba(13, 110, 253, 0.1);
+    border: 1px solid blue;
+    border-radius: 6px;
+    text-align: center;
+    align-items: center;
+    padding: 33px;
+}
+.in-description {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 33px;
+}

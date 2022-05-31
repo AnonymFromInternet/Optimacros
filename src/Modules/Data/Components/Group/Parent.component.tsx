@@ -7,14 +7,21 @@ interface ParentComponentProps {
 }
 
 const ParentComponent: FC<ParentComponentProps> = ({ id }) => {
-  console.log("id is", id);
+  const content = () => {
+    return "child";
+  };
   return (
-    <div className={"parentComponentContainer"}>
-      <div>
-        Element with Id <span className={"id-text"}>{id}</span>
+    <>
+      <div className={"parentComponentContainer"}>
+        <div>
+          Element with Id <span className={"id-text"}>{id}</span>
+        </div>
+        <div className={"open-delete"}>
+          <div className={"btn pull-xs-right btn-outline-danger"}>Delete</div>
+          <div className={"btn pull-xs-right btn-outline-success"}>Open</div>
+        </div>
       </div>
-      <div className={"btn pull-xs-right btn-outline-primary"}>Open</div>
-    </div>
+    </>
   );
 };
 export default ParentComponent;

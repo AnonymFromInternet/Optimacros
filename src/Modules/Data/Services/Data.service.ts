@@ -26,7 +26,6 @@ export class DataService {
       }
     }
     let array = Object.values(parents);
-    console.log("array is", array);
     for (let i = 0; i < array.length; i++) {
       let parent: ParentInterface = { id: 0 };
       parent.id = Number(array[i]);
