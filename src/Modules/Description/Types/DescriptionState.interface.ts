@@ -1,4 +1,6 @@
+import { ItemIDType } from "./ItemID.type";
+
 export interface DescriptionStateInterface {
   isDescriptionShowing: boolean;
-  itemId: number | null;
+  itemId: ItemIDType | null;
 }

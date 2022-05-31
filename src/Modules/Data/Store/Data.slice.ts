@@ -5,11 +5,14 @@ import { RootState } from "../../../Shared/GlobalStore/GlobalStore";
 import { ParentsAndChildrenInterface } from "../Types/ParentsAndChildren.interface";
 import { ErrorType } from "../../../Shared/Types/Error.type";
 import { ItemIDType } from "../../Description/Types/ItemID.type";
+import { ParentIDType } from "../../Description/Types/ParentID.type";
 
 const initialState: DataStateInterface = {
   isLoading: false,
   children: null,
+  areChildrenShowed: false,
   parents: null,
+  parentIdForShowing: null,
   error: null,
 };
 
@@ -35,6 +38,13 @@ const dataSlice = createSlice({
     deleteParentAction: (state, action: PayloadAction<ItemIDType>) => {
       // filter по parents. Если айди не совпадает тогда вернуть в
     },
+    deleteChildAction: (state, action: PayloadAction<ItemIDType>) => {
+      // filter по children. Если айди не совпадает тогда вернуть в
+    },
+    childrenShowedToggler: (state, action: PayloadAction<ParentIDType>) => {
+      state.areChildrenShowed = !state.areChildrenShowed;
+      state.parentIdForShowing = action.payload;
+    },
   },
 });
 
@@ -44,6 +54,7 @@ export const {
   getDataSuccessAction,
   getDataFailureAction,
   deleteParentAction,
+  childrenShowedToggler,
 } = dataSlice.actions;
 
 // Selectors
@@ -51,6 +62,10 @@ export const isLoadingSelector = (state: RootState) => state.data.isLoading;
 export const childrenSelector = (state: RootState) => state.data.children;
 export const parentsSelector = (state: RootState) => state.data.parents;
 export const errorSelector = (state: RootState) => state.data.error;
+export const areChildrenShowedSelector = (state: RootState) =>
+  state.data.areChildrenShowed;
+export const parentIdForShowingSelector = (state: RootState) =>
+  state.data.parentIdForShowing;
 
 // Reducer
 export default dataSlice.reducer;
