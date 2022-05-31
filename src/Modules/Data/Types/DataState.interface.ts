@@ -1,7 +1,9 @@
-import { ItemInterface } from "./Item.interface";
+import { ChildInterface } from "./ChildInterface";
+import { ParentInterface } from "./Parent.interface";
 
 export interface DataStateInterface {
   isLoading: boolean;
-  data: ItemInterface[] | null;
+  parents: ParentInterface[] | null;
+  children: ChildInterface[] | null;
   error: string | null;
 }

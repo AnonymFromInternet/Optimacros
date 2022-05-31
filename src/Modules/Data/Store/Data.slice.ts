@@ -2,11 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { DataStateInterface } from "../Types/DataState.interface";
 import { RootState } from "../../../Shared/GlobalStore/GlobalStore";
-import { ItemInterface } from "../Types/Item.interface";
+import { ParentsAndChildrenInterface } from "../Types/ParentsAndChildren.interface";
 
 const initialState: DataStateInterface = {
   isLoading: false,
-  data: null,
+  children: null,
+  parents: null,
   error: null,
 };
 
@@ -17,9 +18,13 @@ const dataSlice = createSlice({
     getDataAction: (state) => {
       state.isLoading = true;
     },
-    getDataSuccessAction: (state, action: PayloadAction<ItemInterface[]>) => {
+    getDataSuccessAction: (
+      state,
+      action: PayloadAction<ParentsAndChildrenInterface>
+    ) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.children = action.payload.children;
+      state.parents = action.payload.parents;
     },
     getDataFailureAction: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
@@ -34,7 +39,7 @@ export const { getDataAction, getDataSuccessAction, getDataFailureAction } =
 
 // Selectors
 export const isLoadingSelector = (state: RootState) => state.data.isLoading;
-export const dataSelector = (state: RootState) => state.data.data;
+export const dataSelector = (state: RootState) => state.data.children;
 export const errorSelector = (state: RootState) => state.data.error;
 
 // Reducer
