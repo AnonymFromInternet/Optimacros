@@ -1,17 +1,26 @@
-import "./Description.component.css";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../../Shared/GlobalStore/Hooks";
-import { childSelector } from "../Store/Description.slice";
+import {
+  childSelector,
+  showModalAction,
+  showModalSelector,
+} from "../Store/Description.slice";
+
+import "./Description.component.css";
+import DescriptionModalComponent from "../../../Shared/Modules/DescriptionModal/Components/DescriptionModal.component";
 
 const DescriptionComponent = () => {
   // Store
   const child$ = useAppSelector(childSelector);
-  const dispatch = useAppDispatch(); // deleteParentAction
+  const showModal$ = useAppSelector(showModalSelector);
+  const dispatch = useAppDispatch();
   // Store
+
   return (
     <>
+      {!child$ && <p style={{ padding: "6px" }}>Please choose an element</p>}
       {child$ && (
         <>
           <div className={"descriptionComponentContainer"}>
@@ -30,8 +39,14 @@ const DescriptionComponent = () => {
             <div className={"btn pull-xs-right btn-outline-success"}>
               Refresh
             </div>
-            <div className={"btn pull-xs-right btn-outline-danger"}>Delete</div>
+            <div
+              onClick={() => dispatch(showModalAction())}
+              className={"btn pull-xs-right btn-outline-danger"}
+            >
+              Delete
+            </div>
           </div>
+          {showModal$ && <DescriptionModalComponent id={child$.id} />}
         </>
       )}
     </>

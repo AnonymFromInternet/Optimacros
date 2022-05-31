@@ -22,9 +22,6 @@ function App() {
   const parents$ = useAppSelector(parentsSelector);
   // Store
 
-  // Test Property
-  const showingDescription = true;
-
   useEffect(() => {
     dispatch(getDataAction());
   }, []);
@@ -36,7 +33,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <TopBarComponent />
       <div className="container">
         {isLoading$ && <LoadingComponent />}
@@ -51,11 +48,11 @@ function App() {
           </div>
           <div className="col description">
             <h3 className={"title"}>Description</h3>
-            {showingDescription && <DescriptionComponent />}
+            <DescriptionComponent />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

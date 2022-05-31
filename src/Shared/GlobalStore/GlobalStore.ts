@@ -6,7 +6,10 @@ import description from "../../Modules/Description/Store/Description.slice";
 // Reducers
 
 import { getDataListener } from "../../Modules/Data/Listeners/GetData.listener";
-import { descriptionListener } from "../../Modules/Description/Listeners/Description.listener";
+import {
+  deleteChildListener,
+  descriptionListener,
+} from "../../Modules/Description/Listeners/DescriptionListener";
 
 export const store = configureStore({
   reducer: { data, description },
@@ -14,6 +17,7 @@ export const store = configureStore({
     getDefaultMiddleware().prepend([
       getDataListener.middleware,
       descriptionListener.middleware,
+      deleteChildListener.middleware,
     ]),
 });
 

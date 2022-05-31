@@ -39,7 +39,11 @@ const dataSlice = createSlice({
       // filter по parents. Если айди не совпадает тогда вернуть в
     },
     deleteChildAction: (state, action: PayloadAction<ItemIDType>) => {
-      // filter по children. Если айди не совпадает тогда вернуть в
+      if (state.children) {
+        state.children = state.children.filter(
+          (child) => child.id !== action.payload
+        );
+      }
     },
     childrenShowedToggler: (state, action: PayloadAction<ParentIDType>) => {
       state.parentIdForShowing = action.payload;
@@ -54,6 +58,7 @@ export const {
   getDataSuccessAction,
   getDataFailureAction,
   deleteParentAction,
+  deleteChildAction,
   childrenShowedToggler,
   showDescriptionAction,
 } = dataSlice.actions;
