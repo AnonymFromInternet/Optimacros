@@ -1,20 +1,24 @@
 import { FC } from "react";
 
-import { deleteChildAction } from "../../../../Modules/Data/Store/Data.slice";
-import { useAppDispatch } from "../../../GlobalStore/Hooks";
-import { hideModalAction } from "../../../../Modules/Description/Store/Description.slice";
+import { deleteChildAction } from "../../../Data/Store/Data.slice";
+import { useAppDispatch } from "../../../../Shared/GlobalStore/Hooks";
+import { hideModalAction } from "../../Store/Description.slice";
 
 import "./Modal.component.css";
 
 interface DescriptionModalComponentProps {
-  id: number;
+  childId: number;
 }
 
-const ModalComponent: FC<DescriptionModalComponentProps> = ({ id }) => {
+const DescriptionModalComponent: FC<DescriptionModalComponentProps> = ({
+  childId,
+}) => {
+  // Store
   const dispatch = useAppDispatch();
+  // Store
 
   return (
-    <div className={"modal-container"}>
+    <div className={"description-modal-container"}>
       <h5 className={"modal-title text-danger"}>Are you sure?</h5>
 
       <div className={"toggler"}>
@@ -25,7 +29,7 @@ const ModalComponent: FC<DescriptionModalComponentProps> = ({ id }) => {
           Close this message
         </button>
         <button
-          onClick={() => dispatch(deleteChildAction(id))}
+          onClick={() => dispatch(deleteChildAction(childId))}
           className="btn btn-outline-danger"
         >
           Delete this element anyway
@@ -35,4 +39,4 @@ const ModalComponent: FC<DescriptionModalComponentProps> = ({ id }) => {
   );
 };
 
-export default ModalComponent;
+export default DescriptionModalComponent;

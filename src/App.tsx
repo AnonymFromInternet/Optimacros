@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import { useAppDispatch, useAppSelector } from "./Shared/GlobalStore/Hooks";
 
 import TopBarComponent from "./Shared/Modules/Topbar/Components/TopBar.component";
-import ParentComponent from "./Modules/Data/Components/Group/Parent.component";
+import ParentsComponent from "./Modules/Data/Components/Group/ParentsComponent";
 import {
   getDataAction,
   isLoadingSelector,
@@ -13,17 +13,20 @@ import {
 
 import "./App.css";
 import LoadingComponent from "./Shared/Modules/Loading/Components/Loading.component";
-import DescriptionComponent from "./Modules/Description/Components/Description.component";
+import DescriptionComponent from "./Modules/Description/Components/Description/Description.component";
 import {
+  childSelector,
   hideModalAction,
   setChildAction,
 } from "./Modules/Description/Store/Description.slice";
+import DescriptionModalComponent from "./Modules/Description/Components/Modal/DescriptionModalComponent";
 
 function App() {
   // Store
   const dispatch = useAppDispatch();
   const isLoading$ = useAppSelector(isLoadingSelector);
   const parents$ = useAppSelector(parentsSelector);
+  const child$ = useAppSelector(childSelector);
   // Store
 
   useEffect(() => {
@@ -32,7 +35,7 @@ function App() {
 
   const content = () => {
     return parents$?.map((parent) => {
-      return <ParentComponent key={uuid()} id={parent.id} />;
+      return <ParentsComponent key={uuid()} id={parent.id} />;
     });
   };
 
@@ -53,15 +56,17 @@ function App() {
           <div className="col description">
             <div className="description-title">
               <h3 className={"title"}>Description</h3>
-              <div
-                onClick={() => {
-                  dispatch(setChildAction(null));
-                  dispatch(hideModalAction());
-                }}
-                className={"btn btn-outline-danger"}
-              >
-                x
-              </div>
+              {child$ && (
+                <div
+                  onClick={() => {
+                    dispatch(setChildAction(null));
+                    dispatch(hideModalAction());
+                  }}
+                  className={"btn btn-outline-danger"}
+                >
+                  x
+                </div>
+              )}
             </div>
             <DescriptionComponent />
           </div>

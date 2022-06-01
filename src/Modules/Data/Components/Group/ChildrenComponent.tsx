@@ -21,11 +21,19 @@ const ChildrenComponent: FC<ChildrenComponentProps> = ({ parentId }) => {
   const dispatch$ = useAppDispatch();
   // Store
 
+  const toDescription = (): void => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
   const content = () => {
     return children$?.map((child) => {
       return child.parentId === parentId && parentIdForShowing$ === parentId ? (
         <p
-          onClick={() => dispatch$(showDescriptionAction(child))}
+          onClick={() => {
+            dispatch$(showDescriptionAction(child));
+            toDescription();
+          }}
           className={"childrenFCParagraph btn btn-outline-primary"}
           key={child.id}
         >

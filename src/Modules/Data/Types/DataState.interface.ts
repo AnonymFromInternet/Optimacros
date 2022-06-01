@@ -8,4 +8,5 @@ export interface DataStateInterface {
   parentIdForShowing: number | null;
   children: ChildInterface[] | null;
   error: ErrorType | null;
+  showModal: boolean;
 }

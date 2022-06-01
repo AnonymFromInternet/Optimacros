@@ -1,15 +1,15 @@
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../../Shared/GlobalStore/Hooks";
+} from "../../../../Shared/GlobalStore/Hooks";
 import {
   childSelector,
   showModalAction,
   showModalSelector,
-} from "../Store/Description.slice";
+} from "../../Store/Description.slice";
 
 import "./Description.component.css";
-import ModalComponent from "../../../Shared/Modules/Modal/Components/ModalComponent";
+import DescriptionModalComponent from "../Modal/DescriptionModalComponent";
 
 const DescriptionComponent = () => {
   // Store
@@ -46,7 +46,7 @@ const DescriptionComponent = () => {
               Delete
             </div>
           </div>
-          {showModal$ && <ModalComponent id={child$.id} />}
+          {showModal$ && <DescriptionModalComponent childId={child$.id} />}
         </>
       )}
     </>

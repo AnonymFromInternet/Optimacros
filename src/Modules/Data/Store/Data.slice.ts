@@ -9,6 +9,7 @@ import { ParentIDType } from "../../Description/Types/ParentID.type";
 import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 
 const initialState: DataStateInterface = {
+  showModal: false,
   isLoading: false,
   children: null,
   parents: null,
@@ -49,6 +50,12 @@ const dataSlice = createSlice({
       state.parentIdForShowing = action.payload;
     },
     showDescriptionAction: (state, action: PayloadAction<ChildInterface>) => {},
+    showParentsModalAction: (state) => {
+      state.showModal = true;
+    },
+    hideParentsModalAction: (state) => {
+      state.showModal = false;
+    },
   },
 });
 
@@ -61,6 +68,8 @@ export const {
   deleteChildAction,
   childrenShowedToggler,
   showDescriptionAction,
+  showParentsModalAction,
+  hideParentsModalAction,
 } = dataSlice.actions;
 
 // Selectors
@@ -68,6 +77,8 @@ export const isLoadingSelector = (state: RootState) => state.data.isLoading;
 export const childrenSelector = (state: RootState) => state.data.children;
 export const parentsSelector = (state: RootState) => state.data.parents;
 export const errorSelector = (state: RootState) => state.data.error;
+export const showParentsModalSelector = (state: RootState) =>
+  state.data.showModal;
 
 export const parentIdForShowingSelector = (state: RootState) =>
   state.data.parentIdForShowing;
