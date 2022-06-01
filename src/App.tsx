@@ -14,6 +14,10 @@ import {
 import "./App.css";
 import LoadingComponent from "./Shared/Modules/Loading/Components/Loading.component";
 import DescriptionComponent from "./Modules/Description/Components/Description.component";
+import {
+  hideModalAction,
+  setChildAction,
+} from "./Modules/Description/Store/Description.slice";
 
 function App() {
   // Store
@@ -47,7 +51,18 @@ function App() {
             }
           </div>
           <div className="col description">
-            <h3 className={"title"}>Description</h3>
+            <div className="description-title">
+              <h3 className={"title"}>Description</h3>
+              <div
+                onClick={() => {
+                  dispatch(setChildAction(null));
+                  dispatch(hideModalAction());
+                }}
+                className={"btn btn-outline-danger"}
+              >
+                x
+              </div>
+            </div>
             <DescriptionComponent />
           </div>
         </div>

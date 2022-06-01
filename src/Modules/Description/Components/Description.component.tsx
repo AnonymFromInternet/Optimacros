@@ -9,7 +9,7 @@ import {
 } from "../Store/Description.slice";
 
 import "./Description.component.css";
-import DescriptionModalComponent from "../../../Shared/Modules/DescriptionModal/Components/DescriptionModal.component";
+import ModalComponent from "../../../Shared/Modules/Modal/Components/ModalComponent";
 
 const DescriptionComponent = () => {
   // Store
@@ -46,7 +46,7 @@ const DescriptionComponent = () => {
               Delete
             </div>
           </div>
-          {showModal$ && <DescriptionModalComponent id={child$.id} />}
+          {showModal$ && <ModalComponent id={child$.id} />}
         </>
       )}
     </>

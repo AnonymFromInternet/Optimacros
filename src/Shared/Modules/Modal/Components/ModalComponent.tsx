@@ -4,22 +4,24 @@ import { deleteChildAction } from "../../../../Modules/Data/Store/Data.slice";
 import { useAppDispatch } from "../../../GlobalStore/Hooks";
 import { hideModalAction } from "../../../../Modules/Description/Store/Description.slice";
 
+import "./Modal.component.css";
+
 interface DescriptionModalComponentProps {
   id: number;
 }
 
-const DescriptionModalComponent: FC<DescriptionModalComponentProps> = ({
-  id,
-}) => {
+const ModalComponent: FC<DescriptionModalComponentProps> = ({ id }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div>
-      <div>
-        <h5>Are you sure?</h5>
-      </div>
-      <div>
-        <button onClick={() => dispatch(hideModalAction())}>
+    <div className={"modal-container"}>
+      <h5 className={"modal-title text-danger"}>Are you sure?</h5>
+
+      <div className={"toggler"}>
+        <button
+          className={"btn btn-xs btn-outline-primary"}
+          onClick={() => dispatch(hideModalAction())}
+        >
           Close this message
         </button>
         <button
@@ -33,4 +35,4 @@ const DescriptionModalComponent: FC<DescriptionModalComponentProps> = ({
   );
 };
 
-export default DescriptionModalComponent;
+export default ModalComponent;
