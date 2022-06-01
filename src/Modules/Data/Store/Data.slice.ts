@@ -9,6 +9,7 @@ import { ParentIDType } from "../../Description/Types/ParentID.type";
 import { ChildInterface } from "../../../Shared/Types/ChildInterface";
 
 const initialState: DataStateInterface = {
+  parentsIdForModalShowing: null,
   showModal: false,
   isLoading: false,
   children: null,
@@ -37,7 +38,13 @@ const dataSlice = createSlice({
       state.error = action.payload;
     },
     deleteParentAction: (state, action: PayloadAction<ItemIDType>) => {
-      // filter по parents. Если айди не совпадает тогда вернуть в
+      if (state.parents) {
+        state.parents = state.parents.filter(
+          (parent) => parent.id !== action.payload
+        );
+        state.parentsIdForModalShowing = null;
+        state.showModal = false;
+      }
     },
     deleteChildAction: (state, action: PayloadAction<ItemIDType>) => {
       if (state.children) {
@@ -50,8 +57,9 @@ const dataSlice = createSlice({
       state.parentIdForShowing = action.payload;
     },
     showDescriptionAction: (state, action: PayloadAction<ChildInterface>) => {},
-    showParentsModalAction: (state) => {
+    showParentsModalAction: (state, action: PayloadAction<ParentIDType>) => {
       state.showModal = true;
+      state.parentsIdForModalShowing = action.payload;
     },
     hideParentsModalAction: (state) => {
       state.showModal = false;
@@ -76,6 +84,8 @@ export const {
 export const isLoadingSelector = (state: RootState) => state.data.isLoading;
 export const childrenSelector = (state: RootState) => state.data.children;
 export const parentsSelector = (state: RootState) => state.data.parents;
+export const parentsIdForModalShowingSelector = (state: RootState) =>
+  state.data.parentsIdForModalShowing;
 export const errorSelector = (state: RootState) => state.data.error;
 export const showParentsModalSelector = (state: RootState) =>
   state.data.showModal;

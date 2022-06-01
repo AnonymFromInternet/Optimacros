@@ -1,14 +1,9 @@
 import { FC } from "react";
 
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../../Shared/GlobalStore/Hooks";
+import { useAppDispatch } from "../../../../Shared/GlobalStore/Hooks";
 import {
   childrenShowedToggler,
-  parentIdForShowingSelector,
   showParentsModalAction,
-  showParentsModalSelector,
 } from "../../Store/Data.slice";
 import ChildrenComponent from "./ChildrenComponent";
 
@@ -22,8 +17,6 @@ interface ParentComponentProps {
 const ParentsComponent: FC<ParentComponentProps> = ({ id }) => {
   // Store
   const dispatch = useAppDispatch();
-  const showModal$ = useAppSelector(showParentsModalSelector);
-  const parentIdForShowing$ = useAppSelector(parentIdForShowingSelector);
   // Store
 
   return (
@@ -34,7 +27,9 @@ const ParentsComponent: FC<ParentComponentProps> = ({ id }) => {
         </div>
         <div className={"open-delete"}>
           <div
-            onClick={() => dispatch(showParentsModalAction())}
+            onClick={() => {
+              dispatch(showParentsModalAction(id));
+            }}
             className={"btn pull-xs-right btn-outline-danger"}
           >
             Delete
@@ -47,7 +42,7 @@ const ParentsComponent: FC<ParentComponentProps> = ({ id }) => {
           </div>
         </div>
       </div>
-      {showModal$ && <ParentsModalComponent parentId={id} />}
+      <ParentsModalComponent parentId={id} />
       <ChildrenComponent parentId={id} />
     </>
   );
