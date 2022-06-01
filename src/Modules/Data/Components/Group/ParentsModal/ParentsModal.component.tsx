@@ -27,7 +27,7 @@ const ParentsModalComponent: FC<ParentsModalComponentProps> = ({
   return (
     <>
       {showParentsModal$ && parentsIdForModalShowing$ === parentId && (
-        <div className={"description-parents-modal-container"}>
+        <div className={"parents-modal-container"}>
           <h5 className={"modal-title text-danger"}>Are you sure?</h5>
 
           <div className={"toggler"}>

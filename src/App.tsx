@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "./Shared/GlobalStore/Hooks";
 import TopBarComponent from "./Shared/Modules/Topbar/Components/TopBar.component";
 import ParentsComponent from "./Modules/Data/Components/Group/ParentsComponent";
 import {
+  errorSelector,
   getDataAction,
   isLoadingSelector,
   parentsSelector,
@@ -20,6 +21,7 @@ import {
   setChildAction,
 } from "./Modules/Description/Store/Description.slice";
 import DescriptionModalComponent from "./Modules/Description/Components/Modal/DescriptionModalComponent";
+import ErrorComponent from "./Shared/Modules/Error/Components/Error.component";
 
 function App() {
   // Store
@@ -27,6 +29,7 @@ function App() {
   const isLoading$ = useAppSelector(isLoadingSelector);
   const parents$ = useAppSelector(parentsSelector);
   const child$ = useAppSelector(childSelector);
+  const error$ = useAppSelector(errorSelector);
   // Store
 
   useEffect(() => {
@@ -49,6 +52,7 @@ function App() {
             {
               <>
                 <h3 className={"title"}>List of data</h3>
+                {error$ && <ErrorComponent />}
                 {content()}
               </>
             }

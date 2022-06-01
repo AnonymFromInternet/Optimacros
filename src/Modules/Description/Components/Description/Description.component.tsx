@@ -10,6 +10,7 @@ import {
 
 import "./Description.component.css";
 import DescriptionModalComponent from "../Modal/DescriptionModalComponent";
+import { getDataAction } from "../../../Data/Store/Data.slice";
 
 const DescriptionComponent = () => {
   // Store
@@ -36,7 +37,10 @@ const DescriptionComponent = () => {
             </div>
           </div>
           <div className={"in-description"}>
-            <div className={"btn pull-xs-right btn-outline-success"}>
+            <div
+              onClick={() => dispatch(getDataAction())}
+              className={"btn pull-xs-right btn-outline-success"}
+            >
               Refresh
             </div>
             <div
