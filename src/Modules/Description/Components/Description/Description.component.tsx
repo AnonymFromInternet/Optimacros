@@ -10,14 +10,33 @@ import {
 
 import "./Description.component.css";
 import DescriptionModalComponent from "../Modal/DescriptionModalComponent";
-import { getDataAction } from "../../../Data/Store/Data.slice";
+import {
+  childrenSelector,
+  getDataAction,
+} from "../../../Data/Store/Data.slice";
 
 const DescriptionComponent = () => {
   // Store
+  const children$ = useAppSelector(childrenSelector);
   const child$ = useAppSelector(childSelector);
   const showModal$ = useAppSelector(showModalSelector);
   const dispatch = useAppDispatch();
   // Store
+
+  const apply = (): void => {
+    const children = children$?.filter(
+      (child) => child.parentId === child$?.parentId
+    );
+    console.log(
+      `You are now in the tree with ID ${
+        child$?.parentId
+      }. This tree have the following sub-elements:\n ${children?.map(
+        (child) => {
+          return `Sub-element with label ${child.label}, ID ${child.id}, parent ID ${child.parentId}\n`;
+        }
+      )}`
+    );
+  };
 
   return (
     <>
@@ -42,6 +61,12 @@ const DescriptionComponent = () => {
               className={"btn pull-xs-right btn-outline-success"}
             >
               Refresh
+            </div>
+            <div
+              onClick={() => apply()}
+              className={"btn pull-xs-right btn-outline-primary"}
+            >
+              Apply
             </div>
             <div
               onClick={() => dispatch(showModalAction())}
